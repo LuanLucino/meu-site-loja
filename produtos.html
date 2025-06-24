@@ -13,7 +13,8 @@
       <ul class="nav-links">
         <li><a href="index.html">Início</a></li>
         <li><a href="produtos.html">Produtos</a></li>
-        <li><a href="carrinho.html">Carrinho</a></li>
+        <li><a href="carrinho.html">Carrinho <span id="contador-carrinho">(0)</span></a></li>
+
       </ul>
     </nav>
   </header>
@@ -22,21 +23,36 @@
     <section class="produtos">
       <h2>Nossos Produtos</h2>
       <div class="grade-produtos">
-        <div class="card-produto">
-  <div class="imagem-produto"></div>
-  <h3>Produto 1</h3>
-  <p>Descrição breve do produto.</p>
-  <p>R$ 99,90</p>
-  <button onclick="adicionarCarrinho('Produto 1')">Adicionar ao carrinho</button>
-</div>
 
         <div class="card-produto">
   <div class="imagem-produto"></div>
   <h3>Produto 1</h3>
   <p>Descrição breve do produto.</p>
   <p>R$ 99,90</p>
-  <button onclick="adicionarCarrinho('Produto 1')">Adicionar ao carrinho</button>
+  <div class="controle-quantidade">
+  <button class="btn-menor" onclick="alterarQuantidade(this, -1)">–</button>
+  <span class="quantidade">1</span>
+  <button class="btn-maior" onclick="alterarQuantidade(this, 1)">+</button>
 </div>
+
+  <button onclick="adicionarCarrinho('Produto 1', this)">Adicionar ao carrinho</button>
+</div>
+
+
+        <div class="card-produto">
+  <div class="imagem-produto"></div>
+  <h3>Produto 2</h3>
+  <p>Descrição breve do produto.</p>
+  <p>R$ 99,90</p>
+  <div class="controle-quantidade">
+  <button class="btn-menor" onclick="alterarQuantidade(this, -1)">–</button>
+  <span class="quantidade">1</span>
+  <button class="btn-maior" onclick="alterarQuantidade(this, 1)">+</button>
+</div>
+
+  <button onclick="adicionarCarrinho('Produto 1', this)">Adicionar ao carrinho</button>
+</div>
+
 
         <!-- Adicione mais produtos aqui -->
       </div>
@@ -46,5 +62,8 @@
   <footer>
     <p>&copy; 2025 Minha Loja. Todos os direitos reservados.</p>
   </footer>
+
+  <script src="js/script.js"></script>
+
 </body>
 </html>
