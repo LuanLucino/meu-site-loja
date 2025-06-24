@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+  <main class="login">
+    <h2>📝 Criar conta</h2>
+    <input type="text" id="novoUsuario" placeholder="Nome de usuário" />
+    <input type="password" id="novaSenha" placeholder="Senha" />
+    <button onclick="cadastrarUsuario()">Cadastrar</button>
+    <p>Já tem conta? <a href="login.html">Fazer login</a></p>
+  </main>
+
+  <script>
+    function cadastrarUsuario() {
+      const nome = document.getElementById("novoUsuario").value.trim();
+      const senha = document.getElementById("novaSenha").value;
+
+      if (!nome || !senha) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+      const jaExiste = usuarios.some(user => user.nome === nome);
+
+      if (jaExiste) {
+        alert("Esse nome de usuário já está cadastrado.");
+        return;
+      }
+
+      usuarios.push({ nome, senha });
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+      alert("Conta criada com sucesso!");
+      location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

@@ -5,27 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Histórico de Compras</title>
   <link rel="stylesheet" href="style/style.css" />
-
-    <script>
-    const usuario = localStorage.getItem("usuarioLogado");
-    if (!usuario) {
-      location.href = "login.html";
-    }
-  </script>
 </head>
 <body>
   <header>
     <nav class="navbar">
-  <h1 class="logo"><a href="index.html">Minha Loja</a></h1>
-  <ul class="nav-links">
-    <li><a href="index.html">Início</a></li>
-    <li><a href="produtos.html">Produtos</a></li>
-    <li><a href="carrinho.html">Carrinho <span id="contador-carrinho">(0)</span></a></li>
-    <li><a href="historico.html">Histórico</a></li>
-    <li id="saudacao" style="font-weight: bold;"></li>
-    <li><button id="btn-sair" style="display: none;">Sair</button></li>
-  </ul>
-</nav>
+      <h1 class="logo"><a href="index.html">Minha Loja</a></h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="carrinho.html">Carrinho <span id="contador-carrinho">(0)</span></a></li>
+        <li><a href="historico.html">Histórico</a></li>
+        <li id="saudacao"></li>
+        <li><a id="login-link" href="login.html">Login</a></li>
+        <li><button id="btn-sair" style="display: none;">Sair</button></li>
+      </ul>
+    </nav>
   </header>
 
   <main class="historico">
@@ -37,40 +31,46 @@
     <p>&copy; 2025 Minha Loja. Todos os direitos reservados.</p>
   </footer>
 
+  <script src="js/script.js"></script>
   <script>
-  const container = document.getElementById("lista-historico");
-  const historico = JSON.parse(localStorage.getItem("historico")) || [];
+    const usuario = localStorage.getItem("usuarioLogado");
+    const container = document.getElementById("lista-historico");
 
-  if (historico.length === 0) {
-    container.innerHTML = "<p>Você ainda não fez nenhuma compra.</p>";
-  } else {
-    historico.reverse().forEach((compra, index) => {
-      const bloco = document.createElement("div");
-      bloco.classList.add("compra");
+    if (!usuario) {
+      container.innerHTML = "<p>Faça login para visualizar seu histórico de compras.</p>";
+    } else {
+      const historico = JSON.parse(localStorage.getItem(`historico_${usuario}`)) || [];
 
-      const cabecalho = document.createElement("div");
-      cabecalho.classList.add("cabecalho-compra");
-      cabecalho.innerHTML = `<strong>🧾 ${compra.data}</strong> — Total: R$ ${compra.total}`;
-      cabecalho.style.cursor = "pointer";
+      if (historico.length === 0) {
+        container.innerHTML = "<p>Você ainda não fez nenhuma compra.</p>";
+      } else {
+        historico.reverse().forEach((compra, index) => {
+          const bloco = document.createElement("div");
+          bloco.classList.add("compra");
 
-      const detalhes = document.createElement("div");
-      detalhes.classList.add("detalhes-compra");
-      detalhes.style.display = "none";
+          const cabecalho = document.createElement("div");
+          cabecalho.classList.add("cabecalho-compra");
+          cabecalho.innerHTML = `<strong>🧾 ${compra.data}</strong> — Total: R$ ${compra.total}`;
+          cabecalho.style.cursor = "pointer";
 
-      compra.itens.forEach(item => {
-        detalhes.innerHTML += `<p>${item.nome} — Quantidade: ${item.quantidade}</p>`;
-      });
+          const detalhes = document.createElement("div");
+          detalhes.classList.add("detalhes-compra");
+          detalhes.style.display = "none";
 
-      cabecalho.addEventListener("click", () => {
-        detalhes.style.display = detalhes.style.display === "none" ? "block" : "none";
-      });
+          compra.itens.forEach(item => {
+            detalhes.innerHTML += `<p>${item.nome} — Quantidade: ${item.quantidade}</p>`;
+          });
 
-      bloco.appendChild(cabecalho);
-      bloco.appendChild(detalhes);
-      container.appendChild(bloco);
-    });
-  }
-</script>
+          cabecalho.addEventListener("click", () => {
+            detalhes.style.display = detalhes.style.display === "none" ? "block" : "none";
+          });
 
+          bloco.appendChild(cabecalho);
+          bloco.appendChild(detalhes);
+          container.appendChild(bloco);
+        });
+      }
+    }
+  </script>
 </body>
 </html>

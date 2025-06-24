@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Administrador</title>
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/admin-login.css" />
+
+</head>
+<body>
+  <div class="login-box">
+    <h2>🔐 Login do Administrador</h2>
+    <input type="text" id="adminUser" placeholder="Usuário" />
+    <input type="password" id="adminPass" placeholder="Senha" />
+    <button onclick="loginAdmin()">Entrar</button>
+    <div id="mensagemErro" class="erro"></div>
+  </div>''
+
+  <script>
+    function loginAdmin() {
+      const user = document.getElementById("adminUser").value.trim();
+      const pass = document.getElementById("adminPass").value;
+      const mensagem = document.getElementById("mensagemErro");
+
+      // Credenciais fixas (você pode trocar se quiser)
+      const usuarioCerto = "admin";
+      const senhaCerta = "senha123";
+
+      if (user === usuarioCerto && pass === senhaCerta) {
+        localStorage.setItem("adminLogado", "sim");
+        location.href = "admin-produtos.html"; // redireciona ao painel
+      } else {
+        mensagem.textContent = "Usuário ou senha inválidos.";
+      }
+    }
+  </script>
+</body>
+</html>

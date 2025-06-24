@@ -3,38 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Minha Loja</title>
+  <title>Minha Loja - Início</title>
   <link rel="stylesheet" href="style/style.css" />
-
-  <script>
-    const usuario = localStorage.getItem("usuarioLogado");
-    if (!usuario) {
-      location.href = "login.html";
-    }
-  </script>
-  
 </head>
 <body>
   <header>
     <nav class="navbar">
-  <h1 class="logo"><a href="index.html">Minha Loja</a></h1>
-  <ul class="nav-links">
-    <li><a href="index.html">Início</a></li>
-    <li><a href="produtos.html">Produtos</a></li>
-    <li><a href="carrinho.html">Carrinho <span id="contador-carrinho">(0)</span></a></li>
-    <li><a href="historico.html">Histórico</a></li>
-    <li id="saudacao" style="font-weight: bold;"></li>
-    <li><button id="btn-sair" style="display: none;">Sair</button></li>
-  </ul>
-</nav>
-
+      <h1 class="logo"><a href="index.html">Minha Loja</a></h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="carrinho.html">Carrinho <span id="contador-carrinho">(0)</span></a></li>
+        <li><a href="historico.html">Histórico</a></li>
+        <li id="saudacao"></li>
+        <li><a id="login-link" href="login.html">Login</a></li>
+        <li><button id="btn-sair" style="display: none;">Sair</button></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <section class="bem-vindo">
-      <h2>Bem-vindo à nossa loja!</h2>
-      <p>Explore nossos produtos incríveis.</p>
-    </section>
+  <main class="inicio">
+    <h2>🎉 Bem-vindo à Minha Loja!</h2>
+    <p>Explore nossos produtos incríveis e aproveite ofertas exclusivas.</p>
+    <a href="produtos.html" class="btn-voltar">Ver produtos</a>
   </main>
 
   <footer>

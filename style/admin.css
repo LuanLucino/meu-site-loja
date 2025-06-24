@@ -1,0 +1,49 @@
+body {
+  font-family: sans-serif;
+  padding: 2rem;
+  max-width: 720px;
+  margin: auto;
+  background-color: #f4f4f4;
+}
+
+h2, h3 {
+  color: #333;
+}
+
+form, .produto-listado {
+  background-color: #fff;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.08);
+}
+
+input, button {
+  padding: 0.6rem;
+  margin: 0.4rem 0;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.acoes {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.7rem;
+}
+
+.acoes button {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.btn-sair {
+  background-color: #eee;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  float: right;
+  cursor: pointer;
+}
+
+.btn-sair:hover {
+  background-color: #ddd;
+}

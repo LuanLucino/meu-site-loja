@@ -8,20 +8,32 @@
 </head>
 <body>
   <main class="login">
-    <h2>🛍️ Entrar na Minha Loja</h2>
-    <input type="text" id="nomeUsuario" placeholder="Digite seu nome" />
+    <h2>🔐 Entrar na Minha Loja</h2>
+    <input type="text" id="usuarioLogin" placeholder="Nome de usuário" />
+    <input type="password" id="senhaLogin" placeholder="Senha" />
     <button onclick="fazerLogin()">Entrar</button>
+    <p>Não tem conta? <a href="cadastro.html">Criar agora</a></p>
   </main>
 
   <script>
     function fazerLogin() {
-      const nome = document.getElementById("nomeUsuario").value.trim();
-      if (!nome) {
-        alert("Por favor, digite seu nome.");
+      const nome = document.getElementById("usuarioLogin").value.trim();
+      const senha = document.getElementById("senhaLogin").value;
+
+      if (!nome || !senha) {
+        alert("Por favor, preencha todos os campos.");
         return;
       }
-      localStorage.setItem("usuarioLogado", nome);
-      location.href = "index.html";
+
+      const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+      const usuario = usuarios.find(user => user.nome === nome && user.senha === senha);
+
+      if (usuario) {
+        localStorage.setItem("usuarioLogado", nome);
+        location.href = "index.html";
+      } else {
+        alert("Usuário ou senha inválidos.");
+      }
     }
   </script>
 </body>

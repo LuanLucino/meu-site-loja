@@ -3,76 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Produtos - Minha Loja</title>
+  <title>Produtos</title>
   <link rel="stylesheet" href="style/style.css" />
-
-    <script>
-    const usuario = localStorage.getItem("usuarioLogado");
-    if (!usuario) {
-      location.href = "login.html";
-    }
-  </script>
 </head>
 <body>
   <header>
     <nav class="navbar">
-  <h1 class="logo"><a href="index.html">Minha Loja</a></h1>
-  <ul class="nav-links">
-    <li><a href="index.html">Início</a></li>
-    <li><a href="produtos.html">Produtos</a></li>
-    <li><a href="carrinho.html">Carrinho <span id="contador-carrinho">(0)</span></a></li>
-    <li><a href="historico.html">Histórico</a></li>
-    <li id="saudacao" style="font-weight: bold;"></li>
-    <li><button id="btn-sair" style="display: none;">Sair</button></li>
-  </ul>
-</nav>
+      <h1 class="logo"><a href="index.html">Minha Loja</a></h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="carrinho.html">Carrinho <span id="contador-carrinho">(0)</span></a></li>
+        <li><a href="historico.html">Histórico</a></li>
+        <li id="saudacao"></li>
+        <li><a id="login-link" href="login.html">Login</a></li>
+        <li><button id="btn-sair" style="display: none;">Sair</button></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <section class="produtos">
-      <h2>Nossos Produtos</h2>
-      <div class="grade-produtos">
-
-        <div class="card-produto">
-  <div class="imagem-produto"></div>
-  <h3>Produto 1</h3>
-  <p>Descrição breve do produto.</p>
-  <p>R$ 99,90</p>
-  <div class="controle-quantidade">
-  <button class="btn-menor" onclick="alterarQuantidade(this, -1)">–</button>
-  <span class="quantidade">1</span>
-  <button class="btn-maior" onclick="alterarQuantidade(this, 1)">+</button>
-</div>
-
-  <button onclick="adicionarCarrinho('Produto 1', this)">Adicionar ao carrinho</button>
-</div>
-
-
-        <div class="card-produto">
-  <div class="imagem-produto"></div>
-  <h3>Produto 2</h3>
-  <p>Descrição breve do produto.</p>
-  <p>R$ 99,90</p>
-  <div class="controle-quantidade">
-  <button class="btn-menor" onclick="alterarQuantidade(this, -1)">–</button>
-  <span class="quantidade">1</span>
-  <button class="btn-maior" onclick="alterarQuantidade(this, 1)">+</button>
-</div>
-
-  <button onclick="adicionarCarrinho('Produto 1', this)">Adicionar ao carrinho</button>
-</div>
-
-
-        <!-- Adicione mais produtos aqui -->
-      </div>
-    </section>
+  <main class="produtos">
+    <h2>🛒 Nossos Produtos</h2>
+    <!-- Os produtos serão gerados dinamicamente aqui -->
   </main>
 
   <footer>
     <p>&copy; 2025 Minha Loja. Todos os direitos reservados.</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="js/script.js"></script>
+  <script src="js/produtos.js"></script>
+  <script>
+    const container = document.querySelector(".produtos");
 
+    container.innerHTML = ""; // Evita duplicações
+
+    const produtos = obterProdutos();
+
+    produtos.forEach(produto => {
+      const card = document.createElement("section");
+      card.classList.add("card-produto");
+
+      const estoqueHTML = produto.estoque > 0
+        ? `<span class="estoque">Estoque: ${produto.estoque}</span>`
+        : `<span class="esgotado">Produto esgotado</span>`;
+
+      card.innerHTML = `
+        <h3>${produto.nome}</h3>
+        <p>R$ ${produto.preco.toFixed(2)}</p>
+        ${estoqueHTML}
+        <div class="controle-quantidade">
+          <button onclick="alterarQuantidade(this, -1)">–</button>
+          <span><span class="quantidade">1</span></span>
+          <button onclick="alterarQuantidade(this, 1)">+</button>
+        </div>
+        <button ${produto.estoque === 0 ? "disabled" : ""} onclick="adicionarCarrinhoComEstoque(${produto.id}, this)">Adicionar ao carrinho</button>
+      `;
+
+      container.appendChild(card);
+    });
+
+    function adicionarCarrinhoComEstoque(id, botao) {
+      if (!usuarioLogado) {
+        alert("É necessário estar logado para comprar.");
+        location.href = "login.html";
+        return;
+      }
+
+      const produto = obterProdutos().find(p => p.id === id);
+      if (!produto || produto.estoque === 0) {
+        alert("Produto esgotado.");
+        return;
+      }
+
+      const span = botao.previousElementSibling.querySelector(".quantidade");
+      let quantidade = parseInt(span.textContent);
+      if (isNaN(quantidade) || quantidade < 1) quantidade = 1;
+      if (quantidade > produto.estoque) {
+        alert(`Só temos ${produto.estoque} em estoque.`);
+        return;
+      }
+
+      const chaveCarrinho = `carrinho_${usuarioLogado}`;
+      let carrinho = JSON.parse(localStorage.getItem(chaveCarrinho)) || [];
+      const index = carrinho.findIndex(item => item.nome === produto.nome);
+
+      if (index !== -1) {
+        carrinho[index].quantidade += quantidade;
+      } else {
+        carrinho.push({ nome: produto.nome, quantidade });
+      }
+
+      localStorage.setItem(chaveCarrinho, JSON.stringify(carrinho));
+      atualizarContadorCarrinho();
+      alert(`${quantidade}x ${produto.nome} adicionado(s) ao carrinho.`);
+
+      atualizarEstoque(produto.id, quantidade);
+      location.reload(); // recarrega para atualizar estoque na tela
+    }
+  </script>
 </body>
 </html>
