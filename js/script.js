@@ -95,5 +95,22 @@ function removerItem(index) {
   location.reload();
 }
 
+
+// Exibe o nome do usuário logado e ativa botão "Sair"
+const nomeUsuario = localStorage.getItem("usuarioLogado");
+const saudacao = document.getElementById("saudacao");
+const btnSair = document.getElementById("btn-sair");
+
+if (nomeUsuario && saudacao && btnSair) {
+  saudacao.textContent = `Bem-vindo, ${nomeUsuario}`;
+  btnSair.style.display = "inline-block";
+
+  btnSair.addEventListener("click", () => {
+    localStorage.removeItem("usuarioLogado");
+    location.href = "login.html";
+  });
+}
+
+
 // Atualiza contador da navbar ao carregar qualquer página
 atualizarContadorCarrinho();

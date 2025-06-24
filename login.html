@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+  <main class="login">
+    <h2>🛍️ Entrar na Minha Loja</h2>
+    <input type="text" id="nomeUsuario" placeholder="Digite seu nome" />
+    <button onclick="fazerLogin()">Entrar</button>
+  </main>
+
+  <script>
+    function fazerLogin() {
+      const nome = document.getElementById("nomeUsuario").value.trim();
+      if (!nome) {
+        alert("Por favor, digite seu nome.");
+        return;
+      }
+      localStorage.setItem("usuarioLogado", nome);
+      location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

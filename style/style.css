@@ -35,6 +35,11 @@ footer {
   text-align: center;
 }
 
+.logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
 
 
 
