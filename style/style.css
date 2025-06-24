@@ -1,0 +1,107 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.bem-vindo {
+  padding: 2rem;
+  text-align: center;
+}
+
+footer {
+  background-color: #f1f1f1;
+  padding: 1rem;
+  text-align: center;
+}
+
+
+
+
+/** estilo dos produtos loja**/
+
+
+.produtos {
+  padding: 2rem;
+  text-align: center;
+}
+
+.grade-produtos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card-produto {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  width: 250px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px #ccc;
+}
+
+
+.imagem-produto {
+  width: 100%;
+  height: 150px;
+  background-color: #ddd;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.card-produto button {
+  background-color: #2c7be5;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.card-produto button:hover {
+  background-color: #1a5dcc;
+}
+
+
+.carrinho {
+  padding: 2rem;
+}
+
+.carrinho button {
+  margin-left: 1rem;
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.carrinho button:hover {
+  background-color: #c0392b;
+}
+
