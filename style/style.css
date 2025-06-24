@@ -135,3 +135,74 @@ footer {
   min-width: 20px;
   text-align: center;
 }
+
+
+
+#finalizar-compra {
+  margin-top: 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#finalizar-compra:hover {
+  background-color: #218838;
+}
+
+
+/** obrigado pela compra **/
+
+.obrigado {
+  padding: 3rem;
+  text-align: center;
+}
+
+.btn-voltar {
+  margin-top: 2rem;
+  display: inline-block;
+  background-color: #2c7be5;
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-voltar:hover {
+  background-color: #1a5dcc;
+}
+
+
+/**HISTORICO**/
+
+.historico {
+  padding: 2rem;
+}
+
+.historico h4 {
+  margin-top: 1.5rem;
+  color: #333;
+}
+
+.compra {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.cabecalho-compra:hover {
+  background-color: #eef;
+}
+
+.detalhes-compra {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+}

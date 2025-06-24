@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Histórico de Compras</title>
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Minha Loja</h1>
+      <ul class="nav-links">
+         <li><a href="index.html">Início</a></li>
+         <li><a href="produtos.html">Produtos</a></li>
+         <li><a href="carrinho.html">Carrinho</a></li>
+         <li><a href="historico.html">Histórico</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="historico">
+    <h2>📦 Histórico de Compras</h2>
+    <div id="lista-historico"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Minha Loja. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+  const container = document.getElementById("lista-historico");
+  const historico = JSON.parse(localStorage.getItem("historico")) || [];
+
+  if (historico.length === 0) {
+    container.innerHTML = "<p>Você ainda não fez nenhuma compra.</p>";
+  } else {
+    historico.reverse().forEach((compra, index) => {
+      const bloco = document.createElement("div");
+      bloco.classList.add("compra");
+
+      const cabecalho = document.createElement("div");
+      cabecalho.classList.add("cabecalho-compra");
+      cabecalho.innerHTML = `<strong>🧾 ${compra.data}</strong> — Total: R$ ${compra.total}`;
+      cabecalho.style.cursor = "pointer";
+
+      const detalhes = document.createElement("div");
+      detalhes.classList.add("detalhes-compra");
+      detalhes.style.display = "none";
+
+      compra.itens.forEach(item => {
+        detalhes.innerHTML += `<p>${item.nome} — Quantidade: ${item.quantidade}</p>`;
+      });
+
+      cabecalho.addEventListener("click", () => {
+        detalhes.style.display = detalhes.style.display === "none" ? "block" : "none";
+      });
+
+      bloco.appendChild(cabecalho);
+      bloco.appendChild(detalhes);
+      container.appendChild(bloco);
+    });
+  }
+</script>
+
+</body>
+</html>
