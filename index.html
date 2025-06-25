@@ -3,35 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Minha Loja - Início</title>
+  <title>Loja Moderna</title>
   <link rel="stylesheet" href="style/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <nav class="navbar">
-      <h1 class="logo"><a href="index.html">Minha Loja</a></h1>
+    <div class="navbar">
+      <div class="logo"><a href="#">Minha Loja</a></div>
       <ul class="nav-links">
         <li><a href="index.html">Início</a></li>
         <li><a href="produtos.html">Produtos</a></li>
-        <li><a href="carrinho.html">Carrinho <span id="contador-carrinho">(0)</span></a></li>
-        <li><a href="historico.html">Histórico</a></li>
-        <li id="saudacao"></li>
-        <li><a id="login-link" href="login.html">Login</a></li>
-        <li><button id="btn-sair" style="display: none;">Sair</button></li>
+        <li><a href="carrinho.html">Carrinho</a></li>
+        <li><a href="admin-login.html">Admin</a></li>
       </ul>
-    </nav>
+      <button id="toggleTema" title="Alternar tema">🌙</button>
+    </div>
   </header>
 
-  <main class="inicio">
-    <h2>🎉 Bem-vindo à Minha Loja!</h2>
-    <p>Explore nossos produtos incríveis e aproveite ofertas exclusivas.</p>
-    <a href="produtos.html" class="btn-voltar">Ver produtos</a>
+  <main>
+    <section class="intro">
+      <h2>Bem-vindo à nossa loja!</h2>
+      <p>Os melhores produtos com o melhor estilo para você 😎</p>
+    </section>
+
+    <section class="vitrine" id="vitrineSection">
+      <h3>Nossos Produtos</h3>
+      <div class="produtos" id="listaProdutos"></div>
+    </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Minha Loja. Todos os direitos reservados.</p>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="js/loja.js"></script>
+  <script src="js/tema.js"></script>
 </body>
 </html>

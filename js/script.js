@@ -124,6 +124,21 @@ if (window.location.pathname.includes("carrinho.html")) {
   }
 }
 
+
+// Alternar entre modo claro e escuro
+document.getElementById("toggleTema").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  localStorage.setItem("tema", document.body.classList.contains("dark-mode") ? "escuro" : "claro");
+});
+
+// Ao carregar a página, aplica o tema salvo
+window.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("tema") === "escuro") {
+    document.body.classList.add("dark-mode");
+  }
+});
+
+
 // ❌ Remover item do carrinho
 function removerItem(index) {
   const chaveCarrinho = `carrinho_${usuarioLogado}`;

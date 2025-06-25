@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Produtos</title>
   <link rel="stylesheet" href="style/style.css" />
+  <button id="toggleTema" title="Alternar tema">🌙</button>
+
 </head>
 <body>
   <header>
@@ -101,7 +103,14 @@
 
       atualizarEstoque(produto.id, quantidade);
       location.reload(); // recarrega para atualizar estoque na tela
+    
     }
+
+    // Aplica atraso incremental na animação de cada card
+document.querySelectorAll(".card-produto").forEach((card, i) => {
+  card.style.animationDelay = `${i * 100}ms`;
+});
+
   </script>
 </body>
 </html>
