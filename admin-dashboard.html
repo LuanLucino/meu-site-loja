@@ -1,0 +1,63 @@
+<!-- admin-dashboard.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard do Admin</title>
+  <link rel="stylesheet" href="style/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <canvas id="graficoVendas" width="400" height="200"></canvas>
+
+
+  <script>
+    const adm = localStorage.getItem("adminLogado");
+    if (!adm) location.href = "admin-login.html"; // garanta que o admin esteja logado
+  </script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <h1 class="logo"><a href="admin-produtos.html">Admin</a></h1>
+      <ul class="nav-links">
+        <li><a href="admin-produtos.html">Produtos</a></li>
+        <li><a href="admin-dashboard.html">Dashboard</a></li>
+        <li><a href="index.html">🏠 Loja</a></li>
+      </ul>
+      <button id="toggleTema" title="Tema">🌙</button>
+    </nav>
+  </header>
+ 
+  <section class="dashboard-card">
+  <canvas id="graficoVendas" width="400" height="200"></canvas>
+</section>
+
+  <main>
+    <h2>📊 Vendas da Semana</h2>
+    <section class="dashboard-card">
+      <canvas id="graficoVendas" width="400" height="200"></canvas>
+    </section>
+  </main>
+  
+  <h2>📦 Produtos Mais Vendidos</h2>
+<section class="dashboard-card">
+  <canvas id="graficoMaisVendidos" width="400" height="200"></canvas>
+</section>
+
+
+  <h2>📋 Visão Geral</h2>
+<section class="indicadores">
+  <div class="card-indicador" id="indicador-faturamento">Faturamento: R$ 0,00</div>
+  <div class="card-indicador" id="indicador-itens">Itens Vendidos: 0</div>
+  <div class="card-indicador" id="indicador-produtos">Produtos Ativos: 0</div>
+</section>
+
+
+  <footer>
+    <p>&copy; 2025 Painel Admin</p>
+  </footer>
+
+  <script src="js/dashboard.js"></script>
+  <script src="js/tema.js"></script>
+</body>
+</html>
